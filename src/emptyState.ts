@@ -28,7 +28,10 @@ export function createEmptyState(cameraId: number): AtemCameraControlState {
 			shutterSpeed: 0,
 			gain: 0,
 			// iso: 0,
-			// displayLut: [number, boolean]
+			displayLut: {
+				lutIndex: 0,
+				enabled: false,
+			},
 			ndFilterStop: 0,
 		},
 

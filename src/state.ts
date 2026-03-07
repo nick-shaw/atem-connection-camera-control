@@ -92,7 +92,11 @@ export interface AtemCameraControlState {
 		gain: number
 
 		// iso: number
-		// displayLut: [number, boolean]
+		/** Display LUT selection and enable */
+		displayLut: {
+			lutIndex: number
+			enabled: boolean
+		}
 
 		/**
 		 * ND Filter Stop

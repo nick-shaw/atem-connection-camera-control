@@ -173,6 +173,17 @@ export abstract class AtemCameraControlCommandGenerator<TRes> {
 		return this.addCommand(command)
 	}
 
+	videoDisplayLut(cameraId: number, lutIndex: number, enable: boolean): TRes {
+		const command = new Commands.CameraControlCommand(
+			cameraId,
+			AtemCameraControlCategory.Video,
+			AtemCameraControlVideoParameter.DisplayLUT,
+			constructNumberProps(Commands.CameraControlDataType.SINT8, [lutIndex, enable ? 1 : 0])
+		)
+
+		return this.addCommand(command)
+	}
+
 	// Display
 
 	displayColorBars(cameraId: number, enable: boolean): TRes {

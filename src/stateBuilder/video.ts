@@ -74,8 +74,18 @@ export function applyVideoCommand(
 		case AtemCameraControlVideoParameter.SetAutoExpsureMode:
 		case AtemCameraControlVideoParameter.ShutterAngle:
 		case AtemCameraControlVideoParameter.ShutterSpeed:
+		case AtemCameraControlVideoParameter.DisplayLUT: {
+			if (!changes.checkMessageParameters(command, Commands.CameraControlDataType.SINT8, 2)) return
+
+			state.video.displayLut = {
+				lutIndex: command.properties.numberData[0],
+				enabled: command.properties.numberData[1] !== 0,
+			}
+			changes.addChange(command.source, 'video.displayLut')
+			return
+		}
+
 		case AtemCameraControlVideoParameter.ISO:
-		case AtemCameraControlVideoParameter.DisplayLUT:
 			// Not implemented
 			changes.addUnhandledMessage(command)
 			return
